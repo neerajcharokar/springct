@@ -1,0 +1,8 @@
+use springct_db;
+
+db.createCollection("user");
+db.createCollection("company");
+
+
+db.user.insert({name:'neeraj',email:'neeraj@email.com',phone:'9876543210'});
+db.company.insert({name:'springct',city:'pune'});

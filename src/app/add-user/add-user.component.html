@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <mat-card class="col-md-5 offset-md-3 mt-5 mb-2 text-center">
+                <h1 class="display-2 text-primary">Add User</h1>
+                <hr>
+                <form #userForm="ngForm" (ngSubmit) = "onSubmit()">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="name" [(ngModel)]="name" name="name">
+                      </mat-form-field><br>
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" [(ngModel)]="email" name="email">
+                      </mat-form-field><br>
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Phone</mat-label>
+                        <input matInput type="phone" [(ngModel)]="phone" name="phone">
+                      </mat-form-field><br>
+                      <mat-form-field *ngIf="companyList.length>0" appearance="legacy">
+                        <mat-label>Company Name</mat-label>
+                        <mat-select (selectionChange)="selectCompany($event.value)"  multiple>
+                          <mat-option *ngFor="let name of companyList" [value]="name">{{name}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <button mat-raised-button class="m-3" (click)="fetchList()" color="primary">FetchCompany List</button><br>
+                      <button mat-raised-button type="submit" [disabled]="name===''||email===''||phone===''||selectedCompany.length===0" color="primary">Submit</button><br>
+                      <span *ngIf="successMsg" class="text-success">{{successMsg}}</span>
+                      <span *ngIf = "errorMsg" class="text-danger">{{errorMsg}}</span>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</body>
+</html>

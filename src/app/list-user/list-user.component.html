@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Users</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <mat-card class="col-md-10 offset-md-1 text-center mt-5 mt-2">
+                <button mat-raised-button (click)="parseUser()"  color="primary">Parse Users</button><br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Company Name</mat-label>
+                    <input matInput [(ngModel)]="companyName" name="cName">
+                  </mat-form-field><br>
+                <button mat-raised-button [disabled]="companyName===''" (click)="parseCompanyUser()"  color="primary">Parse Users with Company</button>
+            </mat-card>
+            <mat-card class="col-md-10 offset-md-1  mt-5 mt-2">
+                <ol class="mt-1">
+                    <li *ngFor="let data of userData" class="text-primary">{{data}}</li>
+                  </ol> 
+            </mat-card>
+            <mat-card *ngIf="userCompanyData.length>0" class="col-md-10 offset-md-1  mt-5 mt-2">
+                <ol class="mt-1">
+                    <li *ngFor="let data of userCompanyData" class="text-primary">{{data}}</li>
+                  </ol> 
+            </mat-card>
+        </div>
+    </div>
+</body>
+</html>

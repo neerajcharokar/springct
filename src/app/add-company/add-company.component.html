@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Company</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <mat-card class="col-md-5 offset-md-3 mt-5 mb-2 text-center">
+                <h1 class="display-2 text-primary">Add Company</h1>
+                <hr>
+                <form #companyForm="ngForm" (ngSubmit) = "onSubmit()">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput [(ngModel)]="companyName" name="companyName">
+                      </mat-form-field><br>
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Place</mat-label>
+                        <input matInput [(ngModel)]="place" name="place">
+                      </mat-form-field><br>
+                      <button mat-raised-button [disabled]="companyName ==='' || place ===''" type="submit" color="primary">Submit</button><br>
+                      <span *ngIf="successMsg" class="text-success">{{successMsg}}</span>
+                      <span *ngIf = "errorMsg" class="text-danger">{{errorMsg}}</span>
+                </form>
+            </mat-card>
+            <mat-card class="col-md-5 offset-md-3 mt-5 mb-2 text-center">
+                <h3 *ngFor="let name of companyList;let i=index">{{name}} <mat-icon style="cursor: pointer;" (click)="deleteCompany(i)">delete</mat-icon></h3>
+            </mat-card>
+        </div>
+    </div>
+</body>
+</html>
